@@ -28,7 +28,7 @@
         "babel-eslint":                   "~7.2.3"
     },
     "dependencies" : {
-        "fs-promise":                     "~2.0.2",
+        "mz":                             "~2.6.0",
         "jsonlint":                       "~1.6.2"
     },
     "engines": {
