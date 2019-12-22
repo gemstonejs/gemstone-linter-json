@@ -12,13 +12,13 @@ const jsonLint  = require("jsonlint")
 /*  exported API function  */
 module.exports = async function (filenames, opts = {}, report = { sources: {}, findings: [] }) {
     /*  enable reasonable error handling inside JSONLint  */
-    let ParseError = function (message, info) {
+    const ParseError = function (message, info) {
         this.name    = "ParseError"
         this.message = message
         this.info    = info
     }
     ParseError.prototype = Error
-    let oldParseError = jsonLint.parser.parseError
+    const oldParseError = jsonLint.parser.parseError
     jsonLint.parser.parseError = (str, info) => {
         throw new ParseError(str, info)
     }
@@ -33,10 +33,10 @@ module.exports = async function (filenames, opts = {}, report = { sources: {}, f
             opts.progress(i / filenames.length, `linting JSON: ${filenames[i]}`)
 
         /*  read source code  */
-        let source = await fs.readFile(filenames[i], "utf8")
+        const source = await fs.readFile(filenames[i], "utf8")
 
         /*  determine name  */
-        let name = path.relative(process.cwd(), filenames[i])
+        const name = path.relative(process.cwd(), filenames[i])
 
         /*  lint the source code  */
         try {
